@@ -2,6 +2,16 @@
 
 Android resources package from doapps team.
 
+## Purpose ideas
+### Recycler view + eventos + listener + eventos de componentes internos
+### Manejo del GPS + utilerias + validaciones + tracking
+### Encapsulamiento de retrofit
+### Optimizar fotografías.
+### Canvas
+### Animaciones splash
+### Firebase : push + crash + bd + beacons + fb + gmail
+### Facebook : amigos + invitaciones
+### API Google drive + gmail + gplus
 
 
 ## Build tools version

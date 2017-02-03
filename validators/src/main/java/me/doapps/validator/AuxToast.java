@@ -1,4 +1,4 @@
-package com.example.win10.validator;
+package me.doapps.validator;
 
 import android.content.Context;
 import android.widget.Toast;
@@ -8,7 +8,7 @@ import android.widget.Toast;
  */
 public class AuxToast {
 
-    public static void showAuxToast(Context context,String Message){
+    public static void showAuxToast(Context context, String Message){
         Toast.makeText(context, Message, Toast.LENGTH_SHORT).show();
     }
 }

@@ -1,4 +1,4 @@
-package com.example.win10.validator;
+package me.doapps.validator;
 
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -7,6 +7,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.NotificationCompat;
+
+import com.example.win10.validator.R;
 
 /**
  * Created by luis on 17/01/17.

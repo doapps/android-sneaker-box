@@ -1,4 +1,4 @@
-package com.example.win10.validator;
+package me.doapps.validator;
 
 import android.content.Context;
 import android.os.Build;
@@ -12,11 +12,11 @@ import android.view.WindowManager;
 
 public class StatusBarUtil {
 
-    public static void setStatusBarColor(Context context,int RidColor){
+    public static void setStatusBarColor(Context context, int colorId){
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             ((AppCompatActivity)context).getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             ((AppCompatActivity)context).getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            ((AppCompatActivity)context).getWindow().setStatusBarColor(context.getResources().getColor(RidColor));
+            ((AppCompatActivity)context).getWindow().setStatusBarColor(context.getResources().getColor(colorId));
             ((AppCompatActivity)context).getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
         }
     }

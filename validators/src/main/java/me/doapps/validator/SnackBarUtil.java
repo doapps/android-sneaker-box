@@ -1,9 +1,11 @@
-package com.example.win10.validator;
+package me.doapps.validator;
 
 import android.content.Context;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
+
+import com.example.win10.validator.R;
 
 /**
  * Created by luis on 25/01/17.

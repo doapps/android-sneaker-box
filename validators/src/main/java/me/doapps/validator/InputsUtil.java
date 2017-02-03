@@ -1,4 +1,4 @@
-package com.example.win10.validator;
+package me.doapps.validator;
 
 import android.animation.Animator;
 import android.animation.ObjectAnimator;
@@ -17,6 +17,8 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.win10.validator.R;
 
 /**
  * Created by Luis alberto on 23/09/2016.
@@ -69,11 +71,14 @@ public class InputsUtil {
         return valida;
     }
 
+    /**
+     * Validación de longitud de cadenas
+     * **/
     public static boolean isInRange(EditText input, int min, int max) {
         boolean valida = false;
         try {
-            if (input.getText().toString().trim().length() > min &&
-                    input.getText().toString().trim().length() < max) {
+            String data =  input.getText().toString().trim();
+            if (data.length() > min && data.length() < max) {
                 valida = true;
             }
         } catch (Exception e) {
@@ -427,9 +432,9 @@ public class InputsUtil {
         }
     }
 
-    public static void okEditext(Context context, EditText editText, String holder) {
+    public static void okEditext(Context context, EditText editText, String holder, int colorDrawable) {
         try {
-            editText.setBackgroundResource(R.drawable.edit_silverclear);
+            editText.setBackgroundResource(colorDrawable);
             if (!holder.equals(null)) {
                 editText.setHint(holder);
                 editText.setHintTextColor(context.getResources().getColor(R.color.gray));

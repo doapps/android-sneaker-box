@@ -1,4 +1,4 @@
-package com.example.win10.validator;
+package me.doapps.validator;
 
 import android.content.Context;
 import android.net.ConnectivityManager;
