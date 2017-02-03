@@ -1,4 +1,3 @@
-# android-sneaker-box
+# Sneaker Box
 
-### Sneaker Box
 Android resources package from doapps team.
