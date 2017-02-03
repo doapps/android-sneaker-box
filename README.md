@@ -9,3 +9,8 @@ Android resources package from doapps team.
 
 ## Gradle version
 classpath 'com.android.tools.build:gradle:2.2.2'
+
+
+## Libraries android
+compile 'com.android.support:appcompat-v7:25.0.1'
+compile 'com.android.support:design-v7:25.0.1'
