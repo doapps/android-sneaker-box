@@ -11,7 +11,9 @@ Android resources package from doapps team.
 ### Animaciones splash
 ### Firebase : push + crash + bd + beacons + fb + gmail
 ### Facebook : amigos + invitaciones
-### API Google drive + gmail + gplus
+### API Google drive + gmail + gplus + youtube
+### Outlook
+
 
 
 ## Build tools version
