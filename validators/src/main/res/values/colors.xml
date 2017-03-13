@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#222C77</color>
+    <color name="colorPrimaryDark">#0c144e</color>
+    <color name="colorAccent">#222C77</color>
+    <!-- <color name="colorPrimaryDark">#082463</color> -->
+    <color name="white">#fff</color>
+    <color name="statusBar">#222C77</color>
+    <color name="bluesoft">#3946a3</color>
+
+    <color name="silver">#bfbfbf</color>
+    <color name="silverlight">#dedede</color>
+    <!-- <color name="silverdark">#aeaeae</color> -->
+    <color name="silverdark">#D9D9D9</color>
+    <color name="silverclear">#efefef</color>
+
+    <color name="silver_transparent">#2F3030</color>
+    <color name="cyanblue">#0091ff</color>
+
+    <!-- <color name="silverclear">#e1e1e1</color> -->
+    <color name="gray">#7c7c7c</color>
+    <color name="light_gray">#9b9b9b</color>
+    <color name="edit_text">#2F3030</color>
+    <color name="darkgray_dialog">#2F3030</color>
+    <color name="edit_color">#4f5050</color>
+    <color name="edit_color_blue">#222C77</color>
+    <color name="text_tag">#949494</color>
+
+    <color name="blueclear">#9da2ac</color>
+    <color name="green">#139c57</color>
+    <color name="green_light">#acc83f</color>
+    <color name="blueSea">#0072b5</color>
+    <color name="orange">#fabe15</color>
+    <color name="purple">#6A0888</color>
+    <color name="colorRipple">#9c9c9c</color>
+    <color name="red1">#fa1519</color>
+    <color name="red2">#DC3939</color>
+    <color name="black">#000</color>
+
+
+</resources>

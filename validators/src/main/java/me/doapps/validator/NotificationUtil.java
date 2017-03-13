@@ -37,7 +37,7 @@ public class NotificationUtil {
 
         // Building the notification
         android.support.v4.app.NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context)
-                .setSmallIcon(R.drawable.ic_notification) // notification icon
+                //.setSmallIcon(R.drawable.ic_notification) // notification icon
                 .setContentTitle("I'm a simple notification") // main title of the notification
                 .setContentText("Toca para más información") // notification text
                 .setContentIntent(resultPending); // notification intent

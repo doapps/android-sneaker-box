@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
+import android.view.View;
 
 import com.example.win10.validator.R;
 
@@ -24,10 +25,15 @@ public class SnackBarUtil {
         this.message = message;
     }
 
-    public void showSnackbar(int Rcolor) {
+    public void showSnackbar(int Rcolor, int actionColor) {
         snackbar = Snackbar.make(cl, message, Snackbar.LENGTH_INDEFINITE);
-        snackbar.setActionTextColor(cx.getResources().getColor(R.color.colorPrimary));
-        snackbar.setAction("Ok", v -> ihandler.action()).show();
+        snackbar.setActionTextColor(cx.getResources().getColor(actionColor));
+        snackbar.setAction("Ok", new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ihandler.action();
+            }
+        }).show();
         if (Rcolor != -1) {
             snackbar.getView().setBackgroundColor(ContextCompat.getColor(cx, Rcolor));
             snackbar.setActionTextColor(cx.getResources().getColor(R.color.white));

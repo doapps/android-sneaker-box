@@ -25,10 +25,13 @@ import com.example.win10.validator.R;
  */
 public class InputsUtil {
 
-    public static final float scaleX = 0.7f;
-    public static final float scaleY = 0.7f;
-
-    public static String getText(EditText editText) {
+    /**
+     * method to get a string text from edittext
+     *
+     * @param editText
+     * @return null - no text : string - text
+     */
+    public static String getStringText(EditText editText) {
         if (!editText.getText().toString().trim().isEmpty()) {
             return editText.getText().toString().trim();
         } else {
@@ -36,6 +39,12 @@ public class InputsUtil {
         }
     }
 
+    /**
+     * method to check is editext has text inside
+     *
+     * @param input
+     * @return
+     */
     public static boolean isEditextEmpty(EditText input) {
         boolean isEmpty = true;
         try {
@@ -50,34 +59,32 @@ public class InputsUtil {
         return isEmpty;
     }
 
-    public static boolean isValidInteger(EditText input) {
-        int value = Integer.parseInt(input.getText().toString().trim());
-        if (value > 0)
-            return true;
-        else
-            return false;
-    }
-
-    public static boolean isPhoneNumberComplete(EditText input) {
-        boolean valida = false;
+    /**
+     * method to check if isValidDouble is valid number
+     *
+     * @param input
+     * @return
+     */
+    public static boolean isValidNumber(EditText input) {
+        boolean isValid = false;
         try {
-            if (input.getText().toString().trim().length() > 6 &&
-                    input.getText().toString().trim().length() < 12) {
-                valida = true;
-            }
+            Integer.parseInt(input.getText().toString().trim());
+            isValid = true;
         } catch (Exception e) {
             e.printStackTrace();
+            isValid = false;
+        } finally {
+            return isValid;
         }
-        return valida;
     }
 
     /**
-     * Validación de longitud de cadenas
-     * **/
+     * String validation for minimun lenght and max lenght
+     **/
     public static boolean isInRange(EditText input, int min, int max) {
         boolean valida = false;
         try {
-            String data =  input.getText().toString().trim();
+            String data = input.getText().toString().trim();
             if (data.length() > min && data.length() < max) {
                 valida = true;
             }
@@ -87,83 +94,21 @@ public class InputsUtil {
         return valida;
     }
 
-    public static boolean isInRange(EditText input, int max) {
-        boolean b = false;
-        try {
-            if (input.getText().toString().trim().length() == max) {
-                b = true;
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return b;
-    }
-
-    public static boolean isInAnyRangeTil(EditText input, int max, int min) {
-        boolean b = false;
-        try {
-            if (input.getText().toString().trim().length() >= min &&
-                    input.getText().toString().trim().length() <= max) {
-                b = true;
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return b;
-    }
-
-    public static boolean isContained(EditText input, int max) {
-        boolean b = false;
-        try {
-            if (input.getText().toString().trim().length() <= max) {
-                b = true;
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return b;
-    }
-
+    /**
+     * show the text lenght
+     * @param context
+     * @param editText
+     */
     public static void showTextLenght(Context context, EditText editText) {
         Toast.makeText(context, "text lenght : " + editText.getText().length(), Toast.LENGTH_SHORT).show();
-
     }
 
-    public static boolean isDocumentsComplete(EditText input) {
-        boolean valida = false;
-        try {
-            if (input.getText().toString().trim().length() > 6 && input.getText().toString().trim().length() < 12) {
-                valida = true;
-            } else {
-                valida = false;
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return valida;
-    }
-
-    public static boolean isMail(EditText input) {
-        boolean valida = false;
-        try {
-            if (input.getText().toString().trim().equals("")) {
-                valida = false;
-            } else {
-                if (android.util.Patterns.EMAIL_ADDRESS.matcher(input.getText().toString().trim()).matches()) {
-                    valida = true;
-                } else {
-                    return false;
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return valida;
-    }
-
-    public static void clearIpnut(EditText input) {
+    /**
+     * method toe clear the current Input
+     *
+     * @param input
+     */
+    public static void clearEdit(EditText input) {
         try {
             input.setText("");
         } catch (Exception e) {
@@ -171,6 +116,21 @@ public class InputsUtil {
         }
     }
 
+    /**
+     * hide allways keyboard
+     * @param context
+     */
+    public static void removeFocus(Context context) {
+        ((AppCompatActivity) context).getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+    }
+
+    /**
+     * method to compare text from edittext and an string pattern
+     *
+     * @param input
+     * @param pattern
+     * @return
+     */
     public static boolean isDifferent(EditText input, String pattern) {
         try {
             String value = input.getText().toString().trim();
@@ -183,105 +143,11 @@ public class InputsUtil {
         return false;
     }
 
-    public static void selectedEditext(Context context, EditText input, TextView text_holder, int dimenId) {
-        input.setOnTouchListener((View v, MotionEvent event) -> {
-            switch (event.getAction()) {
-                case MotionEvent.ACTION_DOWN:
-                    input.requestFocus();
-                    showKeyBoard(context, input, InputMethodManager.SHOW_IMPLICIT);
-                    input.setCursorVisible(true);
-                    break;
-                case MotionEvent.ACTION_MOVE:
-                    break;
-                case MotionEvent.ACTION_UP:
-
-                    break;
-            }
-            return true;
-        });
-
-    }
-
-    public static void releasedEditext(Context context, EditText input, TextView text_holder, int dimenId) {
-        float dim = ((0) * context.getResources().getDimension(dimenId));
-        float scaleX = 1;
-        float scaleY = 1;
-
-        animateDownLabel(context, text_holder, scaleX, scaleY, dim);
-    }
-
-    public static void animateUpLabel(Context context, TextView textView, float scaleX, float scaleY, float dimY) {
-        textView.setText(textView.getText().toString().toUpperCase());
-        textView.animate().scaleY(scaleY);
-        textView.animate().scaleX(scaleX);
-        textView.animate().translationY(dimY).start();
-    }
-
-    public static void animateDownLabel(Context context, TextView textView, float scaleX, float scaleY, float dimY) {
-        textView.setText(textView.getText().toString().toUpperCase());
-        textView.animate().scaleY(scaleY);
-        textView.animate().scaleX(scaleX);
-        textView.animate().translationY(dimY).start();
-    }
-
-    public static void HandleEditTextEffect(Context context, EditText input, TextView text_holder, int dimen) {
-        //selectedEditext(context, input, text_holder, dimen);
-        float dim = context.getResources().getDimension(dimen);
-
-        if (!isEditextEmpty(input)) {
-            animateUpLabel(context, text_holder, scaleX, scaleY, dim);
-        }
-
-        input.setOnFocusChangeListener((View v, boolean hasFocus) -> {
-
-            if (hasFocus) {
-                if (text_holder != null) {
-                    animateUpLabel(context, text_holder, scaleX, scaleY, dim);
-                }
-                showKeyBoard(context, input, InputMethodManager.SHOW_IMPLICIT);
-            } else {
-                if (isEditextEmpty(input)) {
-                    if (text_holder != null) {
-                        releasedEditext(context, input, text_holder, dimen);
-                    }
-                    showKeyBoard(context, input, 0);
-                    input.setCursorVisible(false);
-                }
-            }
-
-        });
-
-        input.setOnEditorActionListener((TextView v, int actionId, KeyEvent event) -> {
-            if (actionId == EditorInfo.IME_ACTION_DONE || actionId == EditorInfo.IME_ACTION_NEXT) {
-                if (isEditextEmpty(input)) {
-                    releasedEditext(context, input, text_holder, dimen);
-                    showKeyBoard(context, input, InputMethodManager.SHOW_IMPLICIT);
-                    input.setCursorVisible(false);
-                    input.clearFocus();
-                }
-            }
-            return false;
-        });
-
-    }
-
-    public static void showKeyBoard(Context context, EditText editText, int param) {
-        InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
-        imm.showSoftInput(editText, param);
-    }
-
-    public static void removeFocus(Context context) {
-        ((AppCompatActivity) context).getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
-    }
-
-    public static boolean isValidEmailAddress(String email) {
-
-        String ePattern = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$";
-        java.util.regex.Pattern p = java.util.regex.Pattern.compile(ePattern);
-        java.util.regex.Matcher m = p.matcher(email);
-        return m.matches();
-    }
-
+    /**
+     * method to verify is mail is valid
+     * @param email
+     * @return
+     */
     public static boolean isValidEmailAddress(EditText email) {
         if (!email.getText().toString().trim().isEmpty()) {
             String eml = email.getText().toString().trim();
@@ -294,7 +160,13 @@ public class InputsUtil {
         return false;
     }
 
-    public static boolean isMin(EditText editText, int min) {
+    /**
+     * method to validate if an string is not so long than param
+     * @param editText
+     * @param min quantity of chars
+     * @return
+     */
+    public static boolean isMinusThanLenght(EditText editText, int min) {
         boolean val = false;
         if (editText != null)
             if (editText.getText().toString().length() < min)
@@ -302,148 +174,12 @@ public class InputsUtil {
         return val;
     }
 
-    public static void onErrorEditext(Context context, EditText editText) {
-        try {
-            ObjectAnimator anim = ObjectAnimator.ofFloat(editText, "alpha", 0.3f);
-            anim.setDuration(500);
-            anim.start();
-
-            ObjectAnimator anim1 = ObjectAnimator.ofFloat(editText, "alpha", 1f);
-            anim1.setDuration(500);
-
-            ObjectAnimator anim2 = ObjectAnimator.ofFloat(editText, "alpha", 0.3f);
-            anim2.setDuration(500);
-
-            ObjectAnimator anim3 = ObjectAnimator.ofFloat(editText, "alpha", 1f);
-            anim3.setDuration(500);
-
-            anim.addListener(new Animator.AnimatorListener() {
-                @Override
-                public void onAnimationStart(Animator animation) {
-                    editText.setBackgroundResource((R.drawable.edit_error2));
-
-                }
-
-                @Override
-                public void onAnimationEnd(Animator animation) {
-                    anim1.start();
-                }
-
-                @Override
-                public void onAnimationCancel(Animator animation) {
-
-                }
-
-                @Override
-                public void onAnimationRepeat(Animator animation) {
-
-                }
-            });
-
-            anim1.addListener(new Animator.AnimatorListener() {
-                @Override
-                public void onAnimationStart(Animator animation) {
-                    editText.setBackgroundResource((R.drawable.edit_error1));
-
-                }
-
-                @Override
-                public void onAnimationEnd(Animator animation) {
-                    anim2.start();
-                }
-
-                @Override
-                public void onAnimationCancel(Animator animation) {
-
-                }
-
-                @Override
-                public void onAnimationRepeat(Animator animation) {
-
-                }
-            });
-
-            anim2.addListener(new Animator.AnimatorListener() {
-                @Override
-                public void onAnimationStart(Animator animation) {
-                    editText.setBackgroundResource((R.drawable.edit_error2));
-
-                }
-
-                @Override
-                public void onAnimationEnd(Animator animation) {
-                    anim3.start();
-                }
-
-                @Override
-                public void onAnimationCancel(Animator animation) {
-
-                }
-
-                @Override
-                public void onAnimationRepeat(Animator animation) {
-
-                }
-            });
-
-            anim3.addListener(new Animator.AnimatorListener() {
-                @Override
-                public void onAnimationStart(Animator animation) {
-                    editText.setBackgroundResource((R.drawable.edit_error1));
-
-                }
-
-                @Override
-                public void onAnimationEnd(Animator animation) {
-                }
-
-                @Override
-                public void onAnimationCancel(Animator animation) {
-
-                }
-
-                @Override
-                public void onAnimationRepeat(Animator animation) {
-
-                }
-            });
-
-            editText.addTextChangedListener(new TextWatcher() {
-                @Override
-                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-                }
-
-                @Override
-                public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-                }
-
-                @Override
-                public void afterTextChanged(Editable s) {
-                    if (s.toString().length() > 0) {
-                        InputsUtil.okEditext(context, editText, null);
-                    }
-                }
-            });
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static void okEditext(Context context, EditText editText, String holder, int colorDrawable) {
-        try {
-            editText.setBackgroundResource(colorDrawable);
-            if (!holder.equals(null)) {
-                editText.setHint(holder);
-                editText.setHintTextColor(context.getResources().getColor(R.color.gray));
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
+    /**
+     * method to check is a checkbox is selected
+     *
+     * @param box
+     * @return true - selected : false - unselected
+     */
     public static boolean isSelected(CheckBox box) {
         boolean bol = false;
         if (box.isChecked()) {
@@ -452,11 +188,28 @@ public class InputsUtil {
         return bol;
     }
 
-    public static Object getItemSpinner(Spinner spinner) {
-        if (spinner != null) {
-            return spinner.getSelectedItem();
-        }
-        return null;
+    /**
+     * method to show the keyboard
+     *
+     * @param context
+     * @param editText
+     * @param param    0
+     */
+    public static void showKeyBoard(Context context, EditText editText, int param) {
+        InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
+        //imm.showSoftInput(editText, InputMethodManager.RESULT_UNCHANGED_HIDDEN);
+        imm.showSoftInput(editText, param);
+    }
+
+    /**
+     * method to hide the keyboard
+     *
+     * @param context
+     * @param param   0
+     */
+    public static void hideKeyBoard(Context context, int param) {
+        InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, param);
     }
 
 
