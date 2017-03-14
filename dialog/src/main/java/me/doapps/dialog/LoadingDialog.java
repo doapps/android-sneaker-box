@@ -15,7 +15,7 @@ import android.widget.ProgressBar;
  * Created by jonathannolasco on 2/3/17.
  */
 
-public class loadingDialog extends AlertDialog {
+public class LoadingDialog extends AlertDialog {
     private Context context;
     private  String title, message;
 
@@ -23,18 +23,18 @@ public class loadingDialog extends AlertDialog {
         this.title = title;
         this.message = message;
     }
-    public loadingDialog(@NonNull Context context, String title, String message) {
+    public LoadingDialog(@NonNull Context context, String title, String message) {
         super(context);
         onCreate(title, message);
         init();
     }
 
-    protected loadingDialog(@NonNull Context context, @StyleRes int themeResId) {
+    protected LoadingDialog(@NonNull Context context, @StyleRes int themeResId) {
         super(context, themeResId);
         init();
     }
 
-    protected loadingDialog(@NonNull Context context, boolean cancelable, @Nullable OnCancelListener cancelListener) {
+    protected LoadingDialog(@NonNull Context context, boolean cancelable, @Nullable OnCancelListener cancelListener) {
         super(context, cancelable, cancelListener);
         init();
     }
